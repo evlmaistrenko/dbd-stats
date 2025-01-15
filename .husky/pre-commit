@@ -1,0 +1,4 @@
+# npm run docs
+# git add ./apps/*/docs
+npx --no -- lint-staged
+npm test

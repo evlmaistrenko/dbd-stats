@@ -1,0 +1,18 @@
+{
+	"extra-label": "release",
+	"packages": {
+		".": {
+			"release-type": "node"
+		},
+		"apps/web": {
+			"release-type": "node"
+		}
+	},
+	"plugins": [
+		{
+			"type": "node-workspace",
+			"updatePeerDependencies": true
+		}
+	],
+	"$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json"
+}
