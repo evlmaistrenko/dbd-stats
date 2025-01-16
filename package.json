@@ -1,6 +1,6 @@
 {
 	"name": "@evlmaistrenko/dbd-stats",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"scripts": {
 		"docs": "npm run docs --ws --if-present",
 		"lint": "npx --no -- eslint",
