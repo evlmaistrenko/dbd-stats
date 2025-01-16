@@ -10,7 +10,7 @@
 		"prepare": "husky || true"
 	},
 	"type": "module",
-	"workspaces": ["apps/*"],
+	"workspaces": ["apps/*", "packages/*"],
 	"devDependencies": {
 		"@commitlint/cli": "^19.6.0",
 		"@commitlint/config-conventional": "^19.6.0",

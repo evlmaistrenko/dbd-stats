@@ -6,6 +6,9 @@
 		},
 		"apps/web": {
 			"release-type": "node"
+		},
+		"packages/mongodb": {
+			"release-type": "node"
 		}
 	},
 	"plugins": [

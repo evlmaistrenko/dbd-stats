@@ -1,0 +1,34 @@
+{
+	"name": "@evlmaistrenko/dbd-stats-mongodb",
+	"version": "1.0.0",
+	"description": "MongoDB for dbd-stats",
+	"main": "dist/index.js",
+	"exports": {
+		".": "./dist/index.js",
+		"./config": "./dist/config.js"
+	},
+	"scripts": {
+		"build": "tsc",
+		"docs": "typedoc"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/evlmaistrenko/dbd-stats.git",
+		"directory": "./packages/mongodb/"
+	},
+	"keywords": ["mongodb", "dbd-stats"],
+	"author": "evlmaistrenko <evlmaistrenko@gmail.com>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/evlmaistrenko/dbd-stats/issues"
+	},
+	"homepage": "https://github.com/evlmaistrenko/dbd-stats/blob/master/packages/mongodb/README.md",
+	"type": "module",
+	"dependencies": {
+		"mongodb": "^6.12.0"
+	},
+	"peerDependencies": {
+		"@evlmaistrenko/tools-mongomq": "^1.1.1",
+		"@evlmaistrenko/tools-steam-api-client": "^1.1.0"
+	}
+}

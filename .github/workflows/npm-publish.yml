@@ -1,0 +1,43 @@
+name: npm-publish
+
+on:
+  pull_request:
+    branches:
+      - master
+    types: [closed]
+
+jobs:
+  test:
+    if: github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'release')
+    runs-on: ubuntu-latest
+    env:
+      HUSKY: 0
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: latest
+          registry-url: https://registry.npmjs.org/
+      - run: npm ci
+      - run: npm test
+
+  publish:
+    needs: test
+    runs-on: ubuntu-latest
+    env:
+      NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      HUSKY: 0
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: latest
+          registry-url: https://registry.npmjs.org/
+      - run: npm ci
+      - run: npm run build
+      - run: rm -rf node_modules/
+      - run: rm package-lock.json
+      - run: npm shrinkwrap --omit=dev
+      - name: Publish mongodb
+        continue-on-error: true
+        run: npm publish -w packages/mongodb --access=public
