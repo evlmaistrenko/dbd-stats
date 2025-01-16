@@ -1,6 +1,6 @@
 {
 	"name": "@evlmaistrenko/dbd-stats-mongodb",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "MongoDB for dbd-stats",
 	"main": "dist/index.js",
 	"exports": {
