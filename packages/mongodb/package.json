@@ -16,7 +16,10 @@
 		"url": "git+https://github.com/evlmaistrenko/dbd-stats.git",
 		"directory": "./packages/mongodb/"
 	},
-	"keywords": ["mongodb", "dbd-stats"],
+	"keywords": [
+		"mongodb",
+		"dbd-stats"
+	],
 	"author": "evlmaistrenko <evlmaistrenko@gmail.com>",
 	"license": "MIT",
 	"bugs": {
