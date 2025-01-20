@@ -1,0 +1,57 @@
+{
+	"name": "@evlmaistrenko/dbd-stats-api",
+	"version": "1.0.0",
+	"description": "GraphQL API for dbd-stats",
+	"exports": {
+		".": "./dist/index.js",
+		"./config": "./dist/config.js"
+	},
+	"bin": "./dist/cli/index.js",
+	"scripts": {
+		"build": "graphql-codegen --config ./src/codegen.ts && tsc",
+		"docs": "typedoc",
+		"prestart": "npm run build",
+		"pretest": "npm run build",
+		"test": "node --test ./dist/test/**/*.test.js",
+		"start:graphql-codegen": "graphql-codegen --config ./src/codegen.ts --watch",
+		"start:tsc": "tsc --watch",
+		"start:node": "node --watch ./dist/cli/index.js",
+		"start": "concurrently --restart-tries 10  --restart-after exponential npm:start:*"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/evlmaistrenko/dbd-stats.git",
+		"directory": "./apps/api/"
+	},
+	"keywords": ["graphql", "api", "dbd-stats"],
+	"author": "evlmaistrenko <evlmaistrenko@gmail.com>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/evlmaistrenko/dbd-stats/issues"
+	},
+	"homepage": "https://github.com/evlmaistrenko/dbd-stats/blob/master/apps/api/README.md",
+	"type": "module",
+	"dependencies": {
+		"@apollo/server": "^4.11.3",
+		"@evlmaistrenko/tools-mongomq": "^1.1.1",
+		"@evlmaistrenko/tools-steam-api-client": "^1.2.0",
+		"body-parser": "^1.20.3",
+		"chalk": "^5.4.1",
+		"commander": "^13.0.0",
+		"cors": "^2.8.5",
+		"dotenv": "^16.4.7",
+		"express": "^4.21.2",
+		"graphql": "^16.10.0",
+		"graphql-ws": "^6.0.1",
+		"inquirer": "^12.3.2",
+		"lodash": "^4.17.21",
+		"mongodb": "^6.12.0",
+		"ws": "^8.18.0"
+	},
+	"devDependencies": {
+		"@graphql-codegen/cli": "^5.0.3",
+		"@parcel/watcher": "^2.5.0",
+		"@types/cors": "^2.8.17",
+		"@types/ws": "^8.5.13"
+	}
+}

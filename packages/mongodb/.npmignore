@@ -1,6 +1,0 @@
-!dist/
-src/
-test/
-tsconfig.json
-typedoc.json
-.env

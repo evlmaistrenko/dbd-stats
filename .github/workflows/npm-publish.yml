@@ -38,6 +38,6 @@ jobs:
       - run: rm -rf node_modules/
       - run: rm package-lock.json
       - run: npm shrinkwrap --omit=dev
-      - name: Publish mongodb
+      - name: Publish api
         continue-on-error: true
-        run: npm publish -w packages/mongodb --access=public
+        run: npm publish -w apps/api --access=public

@@ -7,7 +7,7 @@
 		"apps/web": {
 			"release-type": "node"
 		},
-		"packages/mongodb": {
+		"apps/api": {
 			"release-type": "node"
 		}
 	},

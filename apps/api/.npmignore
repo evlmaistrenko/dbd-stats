@@ -1,0 +1,11 @@
+!dist/
+dist/codegen.d.ts
+dist/codegen.d.ts.map
+dist/codegen.js
+dist/codegen.js.map
+src/
+test/
+tsconfig.json
+tsconfig.tsbuildinfo
+typedoc.json
+.env
