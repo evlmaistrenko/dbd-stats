@@ -2,3 +2,6 @@ npm run docs
 git add ./apps/*/docs
 npx --no -- lint-staged
 npm test
+git add ./apps/api/schema.graphql
+git add ./apps/api/src/types/schema.ts
+npx --no -- lint-staged
