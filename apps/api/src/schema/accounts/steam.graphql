@@ -1,0 +1,65 @@
+type Mutation {
+	"""
+	Authenticates a user via Steam OpenID. If the user does not exist, a new account is created.
+	No special permissions required.
+	"""
+	signJwtViaSteam(
+		"""
+		Steam OpenID return URL containing authentication data.
+		"""
+		signedUrl: String!
+		"""
+		Privacy settings applied only during the first login.
+		"""
+		privacy: SteamPrivacy
+	): Jwt!
+
+	"""
+	Links a Steam account to the specified user. Requires `MANAGE_ACCOUNTS` permission or strict ownership.
+	"""
+	linkSteamAccount(
+		userId: ID!
+		signedUrl: String!
+		privacy: SteamPrivacy
+	): Boolean! @access(owner: STRICT, can: MANAGE_ACCOUNTS)
+
+	"""
+	Unlinks a Steam account from the specified user. Requires `MANAGE_ACCOUNTS` permission or strict ownership.
+	"""
+	unlinkSteamAccount(userId: ID!, accountId: ID!): Boolean!
+		@access(owner: STRICT, can: MANAGE_ACCOUNTS)
+
+	"""
+	Updates the settings of a linked Steam account. Requires `MANAGE_ACCOUNTS` permission or strict ownership.
+	"""
+	updateSteamAccountSettings(
+		userId: ID!
+		accountId: ID!
+		privacy: SteamPrivacy
+	): Boolean! @access(owner: STRICT, can: MANAGE_ACCOUNTS)
+
+	"""
+	Fetches the latest account data from the Steam API. Requires `MANAGE_ACCOUNTS` permission.
+	"""
+	updateSteamAccount(accountId: ID!): Boolean! @access(can: MANAGE_ACCOUNTS)
+}
+
+type SteamAccount {
+	"Unique identifier."
+	id: ID!
+	"64-bit Steam ID."
+	steamId: ID!
+	"Steam nickname."
+	nickname: String
+	settings: SteamAccountSettings!
+}
+
+type SteamAccountSettings {
+	"Visibility settings."
+	privacy: SteamPrivacy!
+}
+
+enum SteamPrivacy {
+	PRIVATE
+	PUBLIC
+}

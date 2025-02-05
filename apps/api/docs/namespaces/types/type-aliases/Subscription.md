@@ -14,6 +14,8 @@
 
 > `optional` **\_\_typename**: `"Subscription"`
 
-### stats?
+### user
 
-> `optional` **stats**: [`Maybe`](Maybe.md)\<[`Maybe`](Maybe.md)\<[`UserStats`](UserStats.md)\>[]\>
+> **user**: [`User`](User.md)
+
+Subscribes to updates on user account details. Requires `READ_ACCOUNTS` permission or strict ownership.

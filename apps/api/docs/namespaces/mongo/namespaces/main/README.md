@@ -8,14 +8,14 @@
 
 ## Type Aliases
 
-- [StatsDocument](type-aliases/StatsDocument.md)
-- [StatsUpdateQueueDocument](type-aliases/StatsUpdateQueueDocument.md)
+- [SessionDocument](type-aliases/SessionDocument.md)
+- [SteamAccountDocument](type-aliases/SteamAccountDocument.md)
 - [UserDocument](type-aliases/UserDocument.md)
 
 ## Variables
 
 - [client](variables/client.md)
 - [db](variables/db.md)
-- [stats](variables/stats.md)
-- [statsUpdateQueue](variables/statsUpdateQueue.md)
+- [sessions](variables/sessions.md)
+- [steamAccounts](variables/steamAccounts.md)
 - [users](variables/users.md)

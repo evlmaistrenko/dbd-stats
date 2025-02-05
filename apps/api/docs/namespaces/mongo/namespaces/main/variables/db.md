@@ -7,3 +7,5 @@
 # Variable: db
 
 > `const` **db**: `Db`
+
+Main database.

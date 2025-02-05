@@ -18,6 +18,28 @@
 
 > **id**: [`Scalars`](Scalars.md)\[`"ID"`\]\[`"output"`\]
 
-### steamProfile
+Unique identifier.
 
-> **steamProfile**: [`UserSteamProfile`](UserSteamProfile.md)
+### permissions
+
+> **permissions**: [`Maybe`](Maybe.md)\<[`Permissions`](../enumerations/Permissions.md)\>[]
+
+List of granted permissions.
+
+### roles
+
+> **roles**: [`Maybe`](Maybe.md)\<[`Roles`](../enumerations/Roles.md)\>[]
+
+List of assigned roles.
+
+### settings
+
+> **settings**: [`UserSettings`](UserSettings.md)
+
+User settings.
+
+### steam
+
+> **steam**: [`Maybe`](Maybe.md)\<[`SteamAccount`](SteamAccount.md)\>[]
+
+Linked Steam accounts.

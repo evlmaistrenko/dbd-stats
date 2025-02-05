@@ -1,0 +1,48 @@
+type Query {
+	"""
+	Retrieves account details for a specified user. Requires `READ_ACCOUNTS` permission or strict ownership.
+	"""
+	user(userId: ID!): User! @access(owner: STRICT, can: READ_ACCOUNTS)
+}
+
+type Subscription {
+	"""
+	Subscribes to updates on user account details. Requires `READ_ACCOUNTS` permission or strict ownership.
+	"""
+	user(userId: ID!): User! @access(owner: STRICT, can: READ_ACCOUNTS)
+}
+
+type Mutation {
+	"""
+	Updates user settings such as theme preferences. Requires `MANAGE_ACCOUNTS` permission or strict ownership.
+	"""
+	updateUserSettings(userId: ID!, theme: Theme): Boolean!
+		@access(owner: STRICT, can: MANAGE_ACCOUNTS)
+}
+
+type User {
+	"Unique identifier."
+	id: ID!
+	"Linked Steam accounts."
+	steam: [SteamAccount]!
+	"User settings."
+	settings: UserSettings!
+	"List of granted permissions."
+	permissions: [Permissions]!
+	"List of assigned roles."
+	roles: [Roles]!
+}
+
+type UserSettings {
+	"Layout theme."
+	theme: Theme!
+}
+
+enum Theme {
+	LIGHT
+	DARK
+	DEVICE
+	CONDENSED_LIGHT
+	CONDENSED_DARK
+	CONDENSED_DEVICE
+}

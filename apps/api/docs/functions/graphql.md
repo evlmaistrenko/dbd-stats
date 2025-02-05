@@ -10,7 +10,7 @@
 
 > **graphql**(`args`): `Promise`\<`ExecutionResult`\<[`Operations`](../type-aliases/Operations.md)\>\>
 
-Customized `graphql` function
+Customized `graphql` function.
 
 ### Parameters
 
@@ -26,7 +26,7 @@ Customized `graphql` function
 
 > **graphql**(`args`, `subscription`): `AsyncGenerator`\<`ExecutionResult`\<[`Operations`](../type-aliases/Operations.md)\>\>
 
-Customized `graphql` function
+Customized `graphql` function.
 
 ### Parameters
 

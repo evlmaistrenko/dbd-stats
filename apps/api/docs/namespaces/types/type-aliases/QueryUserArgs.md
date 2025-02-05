@@ -10,6 +10,6 @@
 
 ## Type declaration
 
-### id
+### userId
 
-> **id**: [`Scalars`](Scalars.md)\[`"ID"`\]\[`"input"`\]
+> **userId**: [`Scalars`](Scalars.md)\[`"ID"`\]\[`"input"`\]

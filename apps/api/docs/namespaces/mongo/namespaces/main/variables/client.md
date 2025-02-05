@@ -7,3 +7,5 @@
 # Variable: client
 
 > `const` **client**: `MongoClient`
+
+Main database client.

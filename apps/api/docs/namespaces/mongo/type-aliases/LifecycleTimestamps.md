@@ -8,16 +8,24 @@
 
 > **LifecycleTimestamps**: `object`
 
+Representing lifecycle of documents.
+
 ## Type declaration
 
 ### createdAt
 
 > **createdAt**: `Date`
 
+When document inserted.
+
 ### removedAt?
 
 > `optional` **removedAt**: `Date`
 
+When document "removed".
+
 ### updatedAt?
 
 > `optional` **updatedAt**: `Date`
+
+When document updated.

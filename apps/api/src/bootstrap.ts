@@ -2,8 +2,8 @@ import { createServer } from "node:http"
 
 import { ApolloServer } from "@apollo/server"
 import { expressMiddleware } from "@apollo/server/express4"
-import { makeExecutableSchema } from "@graphql-tools/schema"
 import bodyParser from "body-parser"
+import cookieParser from "cookie-parser"
 import cors from "cors"
 import express from "express"
 import { useServer } from "graphql-ws/use/ws"
@@ -12,20 +12,20 @@ import { WebSocketServer } from "ws"
 import { config } from "./config.js"
 
 /**
- * Starts Apollo server
+ * Starts Apollo server.
  *
- * @param listeningListener Callback executed when server is ready
+ * @param listeningListener Callback executed when server is ready.
  */
 export async function bootstrap(listeningListener?: () => void) {
-	const [{ typeDefs }, { resolvers }] = await Promise.all([
-		import("./schema.js"),
-		import("./resolvers/index.js"),
+	const [{ schema }, { context }] = await Promise.all([
+		import("./schema/index.js"),
+		import("./context.js"),
 	])
-	const schema = makeExecutableSchema({ typeDefs, resolvers })
 
 	const app = express()
 	app.use(cors())
 	app.use(bodyParser.json())
+	app.use(cookieParser())
 
 	const httpServer = createServer(app)
 
@@ -34,7 +34,13 @@ export async function bootstrap(listeningListener?: () => void) {
 		path: "/graphql",
 	})
 
-	const serverCleanup = useServer({ schema }, wsServer)
+	const serverCleanup = useServer(
+		{
+			schema,
+			context,
+		},
+		wsServer,
+	)
 
 	const server = new ApolloServer({
 		schema,
@@ -52,7 +58,12 @@ export async function bootstrap(listeningListener?: () => void) {
 	})
 
 	await server.start()
-	app.use("/graphql", expressMiddleware(server))
+	app.use(
+		"/graphql",
+		expressMiddleware(server, {
+			context,
+		}),
+	)
 
 	httpServer.listen(config().port, listeningListener)
 }

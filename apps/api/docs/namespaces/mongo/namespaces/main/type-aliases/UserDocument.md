@@ -6,10 +6,26 @@
 
 # Type Alias: UserDocument
 
-> **UserDocument**: `object` & [`LifecycleTimestamps`](../../../type-aliases/LifecycleTimestamps.md)
+> **UserDocument**: `Omit`\<[`User`](../../../../types/type-aliases/User.md), `"id"` \| `"steam"` \| `"permissions"` \| `"roles"`\> & `object` & [`LifecycleTimestamps`](../../../type-aliases/LifecycleTimestamps.md)
+
+API user.
 
 ## Type declaration
 
-### steamProfile
+### name?
 
-> **steamProfile**: `user.PlayerSummaries`
+> `optional` **name**: `string`
+
+Unique username (login).
+
+### permissions
+
+> **permissions**: `string`[]
+
+List of granted permissions.
+
+### roles
+
+> **roles**: `string`[]
+
+List of assigned roles.

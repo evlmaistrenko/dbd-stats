@@ -5,13 +5,17 @@ import { ChangeStreamDocument } from "mongodb"
 
 import * as main from "./main/index.js"
 
-type AnyDocument = main.StatsDocument | main.StatsUpdateQueueDocument
+type AnyDocument = main.UserDocument | main.SteamAccountDocument
 
 const stream = main.db.watch([
 	{
 		$match: {
 			"ns.coll": {
-				$in: [main.stats.collectionName, main.statsUpdateQueue.collectionName],
+				$in: [
+					main.users.collectionName,
+					main.steamAccounts.collectionName,
+					main.sessions.collectionName,
+				],
 			},
 		},
 	},
@@ -41,6 +45,11 @@ const trigger: () => Promise<ChangeStreamDocument<AnyDocument>> = () => {
 	return result.promise
 }
 
+/**
+ * Yields result of function execution when data of collections is changed.
+ *
+ * @param fn Function to execute.
+ */
 export async function* subscribe<T extends () => Promise<any> | any>(
 	fn: T,
 ): AsyncGenerator<Awaited<ReturnType<T>>> {

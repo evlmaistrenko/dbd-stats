@@ -13,13 +13,6 @@
 
 - [Operations](type-aliases/Operations.md)
 
-## Variables
-
-- [resolvers](variables/resolvers.md)
-- [rootValue](variables/rootValue.md)
-- [schema](variables/schema.md)
-- [typeDefs](variables/typeDefs.md)
-
 ## Functions
 
 - [bootstrap](functions/bootstrap.md)

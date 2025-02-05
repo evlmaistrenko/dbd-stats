@@ -1,0 +1,30 @@
+type Mutation {
+	"""
+	Refreshes an expired or active JWT session. Requires `MAYBE_EXPIRED` ownership validation.
+	"""
+	refreshJwt(userId: ID!): Jwt! @access(owner: MAYBE_EXPIRED)
+
+	"""
+	Revokes one or more JWT sessions for a user. Requires `MANAGE_ACCOUNTS` permission or strict ownership.
+	"""
+	declineJwt(userId: ID!, sessions: [ID!]): Boolean!
+		@access(owner: STRICT, can: MANAGE_ACCOUNTS)
+}
+
+"""
+Represents a JWT (JSON Web Token) for authentication and session management.
+"""
+type Jwt {
+	"""
+	ID of the user associated with this token.
+	"""
+	userId: ID!
+	"""
+	Token used to access protected resources.
+	"""
+	accessToken: String!
+	"""
+	Token used to refresh the JWT session when it expires.
+	"""
+	refreshToken: String!
+}

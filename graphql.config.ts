@@ -1,5 +1,5 @@
 export default {
-	schema: "./apps/api/src/schema.ts",
+	schema: "./apps/api/schema.graphql",
 	documents: [
 		"packages/src/**/*.{graphql,js,ts,jsx,tsx}",
 		"packages/test/**/*.{graphql,js,ts,jsx,tsx}",

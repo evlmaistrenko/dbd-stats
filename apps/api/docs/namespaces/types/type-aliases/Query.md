@@ -14,10 +14,8 @@
 
 > `optional` **\_\_typename**: `"Query"`
 
-### stats?
+### user
 
-> `optional` **stats**: [`Maybe`](Maybe.md)\<[`Maybe`](Maybe.md)\<[`UserStats`](UserStats.md)\>[]\>
+> **user**: [`User`](User.md)
 
-### user?
-
-> `optional` **user**: [`Maybe`](Maybe.md)\<[`User`](User.md)\>
+Retrieves account details for a specified user. Requires `READ_ACCOUNTS` permission or strict ownership.

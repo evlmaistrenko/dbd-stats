@@ -8,6 +8,8 @@
 
 > **subscribe**\<`T`\>(`fn`): `AsyncGenerator`\<`Awaited`\<`ReturnType`\<`T`\>\>\>
 
+Yields result of function execution when data of collections is changed.
+
 ## Type Parameters
 
 • **T** _extends_ () => `any`
@@ -17,6 +19,8 @@
 ### fn
 
 `T`
+
+Function to execute.
 
 ## Returns
 

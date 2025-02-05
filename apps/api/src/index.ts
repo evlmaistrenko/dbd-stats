@@ -1,6 +1,4 @@
 export * from "./graphql.js"
-export * as types from "./types.js"
+export { types } from "./types/index.js"
 export * as mongo from "./mongo/index.js"
 export * from "./bootstrap.js"
-export * from "./schema.js"
-export * from "./resolvers/index.js"

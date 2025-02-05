@@ -6,4 +6,4 @@
 
 # Type Alias: Operations
 
-> **Operations**: `NonNullable`\<`Omit`\<[`Query`](../namespaces/types/type-aliases/Query.md), `"__typename"`\> & `Omit`\<[`Subscription`](../namespaces/types/type-aliases/Subscription.md), `"__typename"`\>\>
+> **Operations**: `NonNullable`\<`Omit`\<[`Query`](../namespaces/types/type-aliases/Query.md), `"__typename"`\> & `Omit`\<[`Subscription`](../namespaces/types/type-aliases/Subscription.md), `"__typename"`\> & `Omit`\<[`Mutation`](../namespaces/types/type-aliases/Mutation.md), `"__typename"`\>\>

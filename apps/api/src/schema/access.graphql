@@ -1,0 +1,64 @@
+"""
+Describes rules required to access operations. Access is granted if at least one rule is satisfied.
+"""
+directive @access(
+	"""
+	If the user is the owner of the subject, the value is the name of the input field that represents the user ID.
+	"""
+	owner: OwnerAccess
+	"""
+	If the user has the specified permission.
+	"""
+	can: Permissions
+) on FIELD_DEFINITION
+
+"""
+Describes which permissions are granted to a role.
+"""
+directive @can(list: [Permissions!]!) on ENUM_VALUE
+
+"""
+Defines permissions available within the system.
+"""
+enum Permissions {
+	"""
+	Allows reading of account information.
+	"""
+	READ_ACCOUNTS
+	"""
+	Allows modification of account information.
+	"""
+	MANAGE_ACCOUNTS
+}
+
+"""
+Defines user roles and their associated permissions.
+"""
+enum Roles {
+	"""
+	Superuser with unrestricted access.
+	"""
+	SUPERUSER
+	"""
+	Administrator role with full account management permissions.
+	"""
+	ADMINISTRATOR @can(list: [READ_ACCOUNTS, MANAGE_ACCOUNTS])
+	"""
+	Manages accounts with read and modify permissions.
+	"""
+	ACCOUNTS_MANAGER @can(list: [READ_ACCOUNTS, MANAGE_ACCOUNTS])
+}
+
+"""
+Defines additional conditions for ownership verification.
+"""
+enum OwnerAccess {
+	"""
+	Requires strict ownership verification.
+	"""
+	STRICT
+	"""
+	Allows access even if the access token may be expired.
+	"""
+	MAYBE_EXPIRED
+}

@@ -1,0 +1,225 @@
+schema {
+	query: Query
+	mutation: Mutation
+	subscription: Subscription
+}
+
+"""
+Describes rules required to access operations. Access is granted if at least one rule is satisfied.
+"""
+directive @access(
+	"""
+	If the user has the specified permission.
+	"""
+	can: Permissions
+	"""
+	If the user is the owner of the subject, the value is the name of the input field that represents the user ID.
+	"""
+	owner: OwnerAccess
+) on FIELD_DEFINITION
+
+"""
+Describes which permissions are granted to a role.
+"""
+directive @can(list: [Permissions!]!) on ENUM_VALUE
+
+"""
+Represents a JWT (JSON Web Token) for authentication and session management.
+"""
+type Jwt {
+	"""
+	Token used to access protected resources.
+	"""
+	accessToken: String!
+	"""
+	Token used to refresh the JWT session when it expires.
+	"""
+	refreshToken: String!
+	"""
+	ID of the user associated with this token.
+	"""
+	userId: ID!
+}
+
+type Mutation {
+	"""
+	Revokes one or more JWT sessions for a user. Requires `MANAGE_ACCOUNTS` permission or strict ownership.
+	"""
+	declineJwt(sessions: [ID!], userId: ID!): Boolean!
+		@access(owner: STRICT, can: MANAGE_ACCOUNTS)
+	"""
+	Links a Steam account to the specified user. Requires `MANAGE_ACCOUNTS` permission or strict ownership.
+	"""
+	linkSteamAccount(
+		privacy: SteamPrivacy
+		signedUrl: String!
+		userId: ID!
+	): Boolean! @access(owner: STRICT, can: MANAGE_ACCOUNTS)
+	"""
+	Refreshes an expired or active JWT session. Requires `MAYBE_EXPIRED` ownership validation.
+	"""
+	refreshJwt(userId: ID!): Jwt! @access(owner: MAYBE_EXPIRED)
+	"""
+	Authenticates a user via Steam OpenID. If the user does not exist, a new account is created.
+	No special permissions required.
+	"""
+	signJwtViaSteam(
+		"""
+		Privacy settings applied only during the first login.
+		"""
+		privacy: SteamPrivacy
+		"""
+		Steam OpenID return URL containing authentication data.
+		"""
+		signedUrl: String!
+	): Jwt!
+	"""
+	Unlinks a Steam account from the specified user. Requires `MANAGE_ACCOUNTS` permission or strict ownership.
+	"""
+	unlinkSteamAccount(accountId: ID!, userId: ID!): Boolean!
+		@access(owner: STRICT, can: MANAGE_ACCOUNTS)
+	"""
+	Fetches the latest account data from the Steam API. Requires `MANAGE_ACCOUNTS` permission.
+	"""
+	updateSteamAccount(accountId: ID!): Boolean! @access(can: MANAGE_ACCOUNTS)
+	"""
+	Updates the settings of a linked Steam account. Requires `MANAGE_ACCOUNTS` permission or strict ownership.
+	"""
+	updateSteamAccountSettings(
+		accountId: ID!
+		privacy: SteamPrivacy
+		userId: ID!
+	): Boolean! @access(owner: STRICT, can: MANAGE_ACCOUNTS)
+	"""
+	Updates user settings such as theme preferences. Requires `MANAGE_ACCOUNTS` permission or strict ownership.
+	"""
+	updateUserSettings(theme: Theme, userId: ID!): Boolean!
+		@access(owner: STRICT, can: MANAGE_ACCOUNTS)
+}
+
+"""
+Defines additional conditions for ownership verification.
+"""
+enum OwnerAccess {
+	"""
+	Allows access even if the access token may be expired.
+	"""
+	MAYBE_EXPIRED
+	"""
+	Requires strict ownership verification.
+	"""
+	STRICT
+}
+
+"""
+Defines permissions available within the system.
+"""
+enum Permissions {
+	"""
+	Allows modification of account information.
+	"""
+	MANAGE_ACCOUNTS
+	"""
+	Allows reading of account information.
+	"""
+	READ_ACCOUNTS
+}
+
+type Query {
+	"""
+	Retrieves account details for a specified user. Requires `READ_ACCOUNTS` permission or strict ownership.
+	"""
+	user(userId: ID!): User! @access(owner: STRICT, can: READ_ACCOUNTS)
+}
+
+"""
+Defines user roles and their associated permissions.
+"""
+enum Roles {
+	"""
+	Manages accounts with read and modify permissions.
+	"""
+	ACCOUNTS_MANAGER @can(list: [READ_ACCOUNTS, MANAGE_ACCOUNTS])
+	"""
+	Administrator role with full account management permissions.
+	"""
+	ADMINISTRATOR @can(list: [READ_ACCOUNTS, MANAGE_ACCOUNTS])
+	"""
+	Superuser with unrestricted access.
+	"""
+	SUPERUSER
+}
+
+type SteamAccount {
+	"""
+	Unique identifier.
+	"""
+	id: ID!
+	"""
+	Steam nickname.
+	"""
+	nickname: String
+	settings: SteamAccountSettings!
+	"""
+	64-bit Steam ID.
+	"""
+	steamId: ID!
+}
+
+type SteamAccountSettings {
+	"""
+	Visibility settings.
+	"""
+	privacy: SteamPrivacy!
+}
+
+enum SteamPrivacy {
+	PRIVATE
+	PUBLIC
+}
+
+type Subscription {
+	"""
+	Subscribes to updates on user account details. Requires `READ_ACCOUNTS` permission or strict ownership.
+	"""
+	user(userId: ID!): User! @access(owner: STRICT, can: READ_ACCOUNTS)
+}
+
+enum Theme {
+	CONDENSED_DARK
+	CONDENSED_DEVICE
+	CONDENSED_LIGHT
+	DARK
+	DEVICE
+	LIGHT
+}
+
+type User {
+	"""
+	Unique identifier.
+	"""
+	id: ID!
+	"""
+	List of granted permissions.
+	"""
+	permissions: [Permissions]!
+	"""
+	List of assigned roles.
+	"""
+	roles: [Roles]!
+	"""
+	User settings.
+	"""
+	settings: UserSettings!
+	"""
+	Linked Steam accounts.
+	"""
+	steam: [SteamAccount]!
+}
+
+type UserSettings {
+	"""
+	Layout theme.
+	"""
+	theme: Theme!
+}

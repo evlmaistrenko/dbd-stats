@@ -8,7 +8,7 @@
 
 > **bootstrap**(`listeningListener`?): `Promise`\<`void`\>
 
-Starts Apollo server
+Starts Apollo server.
 
 ## Parameters
 
@@ -16,7 +16,7 @@ Starts Apollo server
 
 () => `void`
 
-Callback executed when server is ready
+Callback executed when server is ready.
 
 ## Returns
 

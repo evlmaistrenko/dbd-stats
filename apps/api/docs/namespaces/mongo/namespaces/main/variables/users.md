@@ -7,3 +7,5 @@
 # Variable: users
 
 > `const` **users**: `Collection`\<[`UserDocument`](../type-aliases/UserDocument.md)\>
+
+Collection of users.
