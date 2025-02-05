@@ -2,9 +2,9 @@
 
 [![NPM Version](https://img.shields.io/npm/v/%40evlmaistrenko%2Fdbd-stats-api)](https://www.npmjs.com/package/@evlmaistrenko/dbd-stats-api)
 
-GraphQL API for retrieve [Dead by Daylight](https://deadbydaylight.com/) players statistics. Uses [@apollo/server](https://www.npmjs.com/package/@apollo/server) with [graphql-ws](https://www.npmjs.com/package/graphql-ws).
+GraphQL API for retrieve [Dead by Daylight](https://deadbydaylight.com/) players statistics. Uses [@apollo/server](https://www.npmjs.com/package/@apollo/server) with [express](https://www.npmjs.com/package/express) and [graphql-ws](https://www.npmjs.com/package/graphql-ws).
 
-Source of data is [Steam API](https://steamcommunity.com/dev) (no other sources is available now).
+Source of data is [Steam API](https://steamcommunity.com/dev) (no other sources are available now).
 
 ## Usage
 
@@ -20,7 +20,7 @@ npx @evlmaistrenko/dbd-stats-api -h
 npx @evlmaistrenko/dbd-stats-api
 ```
 
-### Environment variables (optional - command will ask you to prompt it if don't set)
+### Environment variables (optional - command will ask you to prompt if don't set)
 
 ```
 PORT=<Port to listen>
@@ -79,7 +79,7 @@ const { graphql, mongo, bootstrap } = await import(
 
 See [here](./docs/README.md).
 
-## Deployments
+## Deployed application
 
 - [https://dbd-stats.fun](https://dbd-stats.fun) - web-interface
 - [https://dbd-stats.fun/graphql](https://dbd-stats.fun/graphql) - API itself.

@@ -3,7 +3,7 @@ import path from "node:path"
 
 import { makeExecutableSchema } from "@graphql-tools/schema"
 import { MapperKind, getDirective, mapSchema } from "@graphql-tools/utils"
-import { GraphQLEnumType, GraphQLError, ListValueNode } from "graphql"
+import { GraphQLEnumType, GraphQLError } from "graphql"
 import _ from "lodash"
 
 import { resolvers } from "../resolvers/index.js"
@@ -14,9 +14,8 @@ const typeDefs = await fs.readFile(
 	{ encoding: "utf-8" },
 )
 
-/** GraphQL-schema */
+/** GraphQL-schema. */
 let schema = makeExecutableSchema({ typeDefs, resolvers })
-
 schema = mapSchema(schema, {
 	[MapperKind.OBJECT_FIELD]: (fieldConfig) => {
 		const access = getDirective(schema, fieldConfig, "access")?.[0] as

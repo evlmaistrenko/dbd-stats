@@ -37,7 +37,6 @@ Refreshes an expired or active JWT session. Requires `MAYBE_EXPIRED` ownership v
 > **signJwtViaSteam**: [`Jwt`](Jwt.md)
 
 Authenticates a user via Steam OpenID. If the user does not exist, a new account is created.
-No special permissions required.
 
 ### unlinkSteamAccount
 

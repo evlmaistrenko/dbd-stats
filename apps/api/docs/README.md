@@ -17,3 +17,4 @@
 
 - [bootstrap](functions/bootstrap.md)
 - [graphql](functions/graphql.md)
+- [subscribe](functions/subscribe.md)

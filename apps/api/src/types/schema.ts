@@ -52,10 +52,7 @@ export type Mutation = {
 	linkSteamAccount: Scalars["Boolean"]["output"]
 	/** Refreshes an expired or active JWT session. Requires `MAYBE_EXPIRED` ownership validation. */
 	refreshJwt: Jwt
-	/**
-	 * Authenticates a user via Steam OpenID. If the user does not exist, a new account is created. No
-	 * special permissions required.
-	 */
+	/** Authenticates a user via Steam OpenID. If the user does not exist, a new account is created. */
 	signJwtViaSteam: Jwt
 	/**
 	 * Unlinks a Steam account from the specified user. Requires `MANAGE_ACCOUNTS` permission or strict

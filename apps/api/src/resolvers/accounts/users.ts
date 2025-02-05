@@ -1,5 +1,5 @@
 import { ApolloServerErrorCode } from "@apollo/server/errors"
-import { GraphQLEnumType, GraphQLError } from "graphql"
+import { GraphQLError } from "graphql"
 import _ from "lodash"
 import { MatchKeysAndValues, ObjectId, WithId } from "mongodb"
 

@@ -1,7 +1,6 @@
 type Mutation {
 	"""
 	Authenticates a user via Steam OpenID. If the user does not exist, a new account is created.
-	No special permissions required.
 	"""
 	signJwtViaSteam(
 		"""

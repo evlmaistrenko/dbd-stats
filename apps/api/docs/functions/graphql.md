@@ -6,38 +6,16 @@
 
 # Function: graphql()
 
-## Call Signature
-
 > **graphql**(`args`): `Promise`\<`ExecutionResult`\<[`Operations`](../type-aliases/Operations.md)\>\>
 
 Customized `graphql` function.
 
-### Parameters
+## Parameters
 
-#### args
+### args
 
 `Omit`\<`GraphQLArgs`, `"schema"` \| `"rootValue"`\>
 
-### Returns
+## Returns
 
 `Promise`\<`ExecutionResult`\<[`Operations`](../type-aliases/Operations.md)\>\>
-
-## Call Signature
-
-> **graphql**(`args`, `subscription`): `AsyncGenerator`\<`ExecutionResult`\<[`Operations`](../type-aliases/Operations.md)\>\>
-
-Customized `graphql` function.
-
-### Parameters
-
-#### args
-
-`Omit`\<`GraphQLArgs`, `"schema"` \| `"rootValue"`\>
-
-#### subscription
-
-`true`
-
-### Returns
-
-`AsyncGenerator`\<`ExecutionResult`\<[`Operations`](../type-aliases/Operations.md)\>\>
