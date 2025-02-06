@@ -39,11 +39,12 @@ schema = mapSchema(schema, {
 								access.owner === types.OwnerAccess.MaybeExpired
 							) {
 								return originalFunction(source, args, context, info)
-							} else {
-								throw new GraphQLError("Access token is expired.", {
-									extensions: { code: types.ErrorCode.Unauthorized },
-								})
 							}
+						}
+						if (context.jwt.expired) {
+							throw new GraphQLError("Access token is expired.", {
+								extensions: { code: types.ErrorCode.Unauthorized },
+							})
 						}
 						const { permissions } = await resolvers.Query.user(null, {
 							userId: context.jwt.userId,

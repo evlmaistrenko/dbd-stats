@@ -3,7 +3,7 @@ import { GraphQLError } from "graphql"
 import _ from "lodash"
 import { MatchKeysAndValues, ObjectId, WithId } from "mongodb"
 
-import * as mongo from "../../mongo/index.js"
+import { mongo } from "../../mongo/index.js"
 import { types } from "../../types/index.js"
 
 /**

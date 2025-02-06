@@ -47,6 +47,14 @@ enum Roles {
 	Manages accounts with read and modify permissions.
 	"""
 	ACCOUNTS_MANAGER @can(list: [READ_ACCOUNTS, MANAGE_ACCOUNTS])
+	"""
+	For test reasons only.
+	"""
+	DUMMY_READER @can(list: [READ_ACCOUNTS])
+	"""
+	For test reasons only.
+	"""
+	DUMMY_MANAGER @can(list: [READ_ACCOUNTS, MANAGE_ACCOUNTS])
 }
 
 """

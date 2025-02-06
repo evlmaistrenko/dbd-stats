@@ -144,6 +144,14 @@ enum Roles {
 	"""
 	ADMINISTRATOR @can(list: [READ_ACCOUNTS, MANAGE_ACCOUNTS])
 	"""
+	For test reasons only.
+	"""
+	DUMMY_MANAGER @can(list: [READ_ACCOUNTS, MANAGE_ACCOUNTS])
+	"""
+	For test reasons only.
+	"""
+	DUMMY_READER @can(list: [READ_ACCOUNTS])
+	"""
 	Superuser with unrestricted access.
 	"""
 	SUPERUSER

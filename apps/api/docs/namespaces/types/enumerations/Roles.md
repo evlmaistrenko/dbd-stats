@@ -26,6 +26,22 @@ Administrator role with full account management permissions.
 
 ---
 
+### DummyManager
+
+> **DummyManager**: `"DUMMY_MANAGER"`
+
+For test reasons only.
+
+---
+
+### DummyReader
+
+> **DummyReader**: `"DUMMY_READER"`
+
+For test reasons only.
+
+---
+
 ### Superuser
 
 > **Superuser**: `"SUPERUSER"`

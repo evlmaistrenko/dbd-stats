@@ -1,6 +1,6 @@
 import _ from "lodash"
 
-import * as mongo from "../mongo/index.js"
+import { mongo } from "../mongo/index.js"
 import * as accounts from "./accounts/index.js"
 
 /** Resolvers. */

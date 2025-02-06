@@ -148,6 +148,10 @@ export enum Roles {
 	AccountsManager = "ACCOUNTS_MANAGER",
 	/** Administrator role with full account management permissions. */
 	Administrator = "ADMINISTRATOR",
+	/** For test reasons only. */
+	DummyManager = "DUMMY_MANAGER",
+	/** For test reasons only. */
+	DummyReader = "DUMMY_READER",
 	/** Superuser with unrestricted access. */
 	Superuser = "SUPERUSER",
 }

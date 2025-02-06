@@ -7,7 +7,7 @@ import _ from "lodash"
 import { Filter, ObjectId } from "mongodb"
 
 import { config } from "../../config.js"
-import * as mongo from "../../mongo/index.js"
+import { mongo } from "../../mongo/index.js"
 import { types } from "../../types/index.js"
 import * as utilities from "../../utilities/index.js"
 import * as accountsUtilities from "./utilities.js"
